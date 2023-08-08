@@ -40,9 +40,10 @@ This README is a guide through the features, technologies used, setup instructio
 - **Backend**: Python
 - **Database**: File Storage.
 - **Version Control**: Git, GitHub
-Here is the flow of the backend.
+- Here is the flow of the backend.
 ![](./815046647d23428a14ca_hu68774d5216c48b4f424f088e55e7a2ed_118703_700x0_resize_box_3.png)
 
 # Setup and Usage
 
+# contributors
 
