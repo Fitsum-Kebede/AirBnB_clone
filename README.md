@@ -19,3 +19,19 @@ Airbnb. The project aims to provide familiar and intuitive functionalities for:
 - create all unittests to validate all our classes and storage engine
 
 This README is a guide through the features, technologies used, setup instructions, and more.
+
+# Features
+
+**Users(class)**: The following are to be used by the user:
+           - show - ()
+           - create - ()
+           - destroy - ()
+           - update
+           - all - ()
+**Console(command interpreter)**: Manages the objects of User class.
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
+
