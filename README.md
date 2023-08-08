@@ -46,4 +46,6 @@ This README is a guide through the features, technologies used, setup instructio
 # Setup and Usage
 
 # contributors
+- **Mcnores-Samuel** <samuelmcnores1@gmail.com>
+- **fitsum-kebede** <fitsuminfome@gmail.com>
 
