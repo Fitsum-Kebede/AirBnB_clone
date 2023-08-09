@@ -8,7 +8,7 @@ from uuid import uuid4
 
 class BaseModel:
     """BaseModel class  definition"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Instatiate the BaseModel instance with unique id,
         the date the instance or object is created and the date
         at the which the instance or object was modified or updated.
@@ -16,6 +16,13 @@ class BaseModel:
         self.id = str(uuid4())
         self.created_at = datetime.datetime.today()
         self.updated_at = datetime.datetime.today()
+        if kwargs:
+            for key, value in kwargs.items():
+
+                if key == "crated_at" and key == "updated_at":
+                    values = datetime.datetime.strptime(values, "%Y-%m-%dT%H:%M:%S.%f")
+                if key != "__class__":
+                    setattr(self, key, values)
 
     def __str__(self):
         """Returns the string representation of the BaseModel"""
@@ -31,9 +38,7 @@ class BaseModel:
         model_dict = {}
         self.__dict__["__class__"] = self.__class__.__name__
         for key, value in self.__dict__.items():
-            if key == "created_at":
-                value = value.isoformat()
-            if key == "updated_at":
+            if key == "created_at" or key == "updated_at":
                 value = value.isoformat()
             model_dict[key] = value
         return (model_dict)
