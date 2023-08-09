@@ -2,7 +2,7 @@
 """This module define BaseModel class which defines all
 common attrbute and methods for subclasses.
 """
-import datetime
+from datetime import datetime
 from uuid import uuid4
 
 
@@ -12,17 +12,22 @@ class BaseModel:
         """Instatiate the BaseModel instance with unique id,
         the date the instance or object is created and the date
         at the which the instance or object was modified or updated.
+
+        args:
+            args: won’t be used
+            kwargs: key/value pair of the BaseModel instance to be used
+                    create another BaseModel object.
         """
         self.id = str(uuid4())
-        self.created_at = datetime.datetime.today()
-        self.updated_at = datetime.datetime.today()
+        self.created_at = datetime.today()
+        self.updated_at = datetime.today()
         if kwargs:
             for key, value in kwargs.items():
-
-                if key == "crated_at" and key == "updated_at":
-                    values = datetime.datetime.strptime(values, "%Y-%m-%dT%H:%M:%S.%f")
                 if key != "__class__":
-                    setattr(self, key, values)
+                    if key == "created_at" or key == "updated_at":
+                        value = datetime.strptime(value,
+                                                  "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, key, value)
 
     def __str__(self):
         """Returns the string representation of the BaseModel"""
@@ -31,7 +36,7 @@ class BaseModel:
 
     def save(self):
         """Sets the date at which the BaseModel object has been updated"""
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """Returns BaseModel dictionary"""
