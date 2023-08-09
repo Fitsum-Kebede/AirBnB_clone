@@ -1,6 +1,6 @@
 # AirBnB clone project
 
-![AirBnB](./65f4a1dd9c51265f49d0_hu98d6ceda137062fd4edf4a7d705e7570_76537_700x0_resize_box_3.png)
+![AirBnB](utils/images/65f4a1dd9c51265f49d0_hu98d6ceda137062fd4edf4a7d705e7570_76537_700x0_resize_box_3.png)
 ## Welcome to the AirBnB clone project!
 
 # Table of Contents
@@ -41,7 +41,7 @@ This README is a guide through the features, technologies used, setup instructio
 - **Database**: File Storage.
 - **Version Control**: Git, GitHub
 - Here is the flow of the backend.
-![](./815046647d23428a14ca_hu68774d5216c48b4f424f088e55e7a2ed_118703_700x0_resize_box_3.png)
+![](utils/images/815046647d23428a14ca_hu68774d5216c48b4f424f088e55e7a2ed_118703_700x0_resize_box_3.png)
 
 # Setup and Usage
 
