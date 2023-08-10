@@ -44,6 +44,7 @@ class BaseModel:
     def to_dict(self):
         """Returns BaseModel dictionary"""
         model_dict = {}
+        model_dict["__class__"] = self.__class__.__name__
         for key, value in self.__dict__.items():
             if key == "created_at" or key == "updated_at":
                 value = value.isoformat()
