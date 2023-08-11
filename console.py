@@ -3,9 +3,17 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
 
 class_list = {
-    "BaseModel": BaseModel
+        "BaseModel": BaseModel, "User": User,
+        "State": State, "City": City, "Review": Review,
+        "Place": Place, "Amenity": Amenity
 }
 
 
