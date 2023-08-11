@@ -113,6 +113,50 @@ class HBNBCommand(cmd.Cmd):
                 result.append(str(data[obj]))
         print(result)
 
+    def do_update(self, line):
+        if not line:
+            print("** class name missing **")
+            return False
+        else:
+            args = line.split(" ")
+            if args[0] in class_list:
+                if len(args) < 2:
+                    print("** instance id missing **")
+                    return False
+                if len(args) < 3:
+                    print("** attribute name missing **")
+                    return False
+                elif len(args) < 4:
+                    print("** value missing **")
+                    return False
+                data = storage.all()
+                is_found = False
+                for obj_id in data.keys():
+                    instance_id = obj_id.split(".")
+                    if args[1] == instance_id[1] and args[0] == instance_id[0]:
+                        if "\"" in args[3] or "'" in args[3]:
+                            args[3] = args[3].strip("\"")
+                            args[3] = args[3].strip("'")
+                        try:
+                            if int(args[3]):
+                                args[3] = int(args[3])
+                        except ValueError:
+                            try:
+                                if float(args[3]):
+                                    args[3] = float(args[3])
+                            except ValueError:
+                                pass
+                        setattr(data[obj_id], args[2], args[3])
+                        data[obj_id].save()
+                        is_found = True
+                        break
+                if not is_found:
+                    print("** no instance found **")
+                    return False
+            else:
+                print("** class doesn't exist **")
+                return False
+
     def do_quit(self, line):
         """quit the console"""
         return True
