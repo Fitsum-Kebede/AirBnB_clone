@@ -114,6 +114,11 @@ class HBNBCommand(cmd.Cmd):
         print(result)
 
     def do_update(self, line):
+        """ Updates an instance based on the class name and id by adding
+        or updating attribute (save the change into the JSON file)
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        Only one attribute can be updated at the time
+        """
         if not line:
             print("** class name missing **")
             return False
