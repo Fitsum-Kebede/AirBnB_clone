@@ -3,6 +3,7 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import re
 
 class_list = {
     "BaseModel": BaseModel
@@ -109,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
             instance_type = obj.split(".")[0]
             if args[0] and args[0] == instance_type:
                 result.append(str(data[obj]))
-            else:
+            if not line:
                 result.append(str(data[obj]))
         print(result)
 
@@ -162,6 +163,23 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return False
 
+    def do_count(self, line):
+        """Counts number of instances of a given class"""
+        args = line.split(" ")
+        data = storage.all()
+        count = 0
+        if line:
+            if args[0] in class_list:
+                pass
+            else:
+                print("** class doesn't exist **")
+                return False
+        for obj in data.keys():
+            instance_type = obj.split(".")[0]
+            if args[0] and args[0] == instance_type:
+                count += 1
+        print(count)
+
     def do_quit(self, line):
         """quit the console"""
         return True
@@ -178,6 +196,34 @@ class HBNBCommand(cmd.Cmd):
     def help_quit(self):
         """ Quit command to exit the program """
         print("Quit command to exit the program")
+
+    def default(self, line):
+        """Retrieve all instances of a class by using: <class name>.all()
+        Retrieve the number of instances of a class: <class name>.count()
+        """
+        match = line.split(".")
+        if "(" in match[1] and ")" in match[1]:
+            args = match[1].strip("\"(\")").split("(\"")
+            match.pop()
+            my_list = match + args
+            parsed = []
+            for n in my_list:
+                value = n.split("\",")
+                for v in value:
+                    if "," in v:
+                        v = v.split(",")
+                    parsed.append(v)
+            if len(parsed) >= 2:
+                if parsed[1] == "all":
+                    self.do_all(parsed[0])
+                elif parsed[1] == "count":
+                    self.do_count(parsed[0])
+                elif parsed[1] == "show":
+                    self.do_show(parsed[0] + " " + parsed[2])
+            else:
+                return cmd.Cmd.default(self, line)
+        else:
+            return cmd.Cmd.default(self, line)
 
 
 if __name__ == '__main__':
