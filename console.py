@@ -201,17 +201,15 @@ class HBNBCommand(cmd.Cmd):
         """Retrieve all instances of a class by using: <class name>.all()
         Retrieve the number of instances of a class: <class name>.count()
         """
-        match = line.split(".")
-        if "(" in match[1] and ")" in match[1]:
-            args = match[1].strip("\"(\")").split("(\"")
-            match.pop()
-            my_list = match + args
+        inputline = line.split(".")
+        if "(" in inputline[1] and ")" in inputline[1]:
+            args = inputline[1].strip("\"(\")").split("(\"")
+            inputline.pop()
+            my_list = inputline + args
             parsed = []
             for n in my_list:
                 value = n.split("\",")
                 for v in value:
-                    if "," in v:
-                        v = v.split(",")
                     parsed.append(v)
             if len(parsed) >= 2:
                 if parsed[1] == "all":
