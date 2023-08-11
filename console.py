@@ -3,12 +3,16 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+<<<<<<< HEAD
 from models.user import User
 from models.place import Place
 from models.city import City
 from models.amenity import Amenity
 from models.state import State
 from models.review import Review
+=======
+import re
+>>>>>>> f172a73bed0b4107f26e312364a801e8c37b7d6e
 
 class_list = {
         "BaseModel": BaseModel, "User": User,
@@ -117,9 +121,75 @@ class HBNBCommand(cmd.Cmd):
             instance_type = obj.split(".")[0]
             if args[0] and args[0] == instance_type:
                 result.append(str(data[obj]))
-            else:
+            if not line:
                 result.append(str(data[obj]))
         print(result)
+
+    def do_update(self, line):
+        """ Updates an instance based on the class name and id by adding
+        or updating attribute (save the change into the JSON file)
+        Usage: update <class name> <id> <attribute name> "<attribute value>"
+        Only one attribute can be updated at the time
+        """
+        if not line:
+            print("** class name missing **")
+            return False
+        else:
+            args = line.split(" ")
+            if args[0] in class_list:
+                if len(args) < 2:
+                    print("** instance id missing **")
+                    return False
+                if len(args) < 3:
+                    print("** attribute name missing **")
+                    return False
+                elif len(args) < 4:
+                    print("** value missing **")
+                    return False
+                data = storage.all()
+                is_found = False
+                for obj_id in data.keys():
+                    instance_id = obj_id.split(".")
+                    if args[1] == instance_id[1] and args[0] == instance_id[0]:
+                        if "\"" in args[3] or "'" in args[3]:
+                            args[3] = args[3].strip("\"")
+                            args[3] = args[3].strip("'")
+                        try:
+                            if int(args[3]):
+                                args[3] = int(args[3])
+                        except ValueError:
+                            try:
+                                if float(args[3]):
+                                    args[3] = float(args[3])
+                            except ValueError:
+                                pass
+                        setattr(data[obj_id], args[2], args[3])
+                        data[obj_id].save()
+                        is_found = True
+                        break
+                if not is_found:
+                    print("** no instance found **")
+                    return False
+            else:
+                print("** class doesn't exist **")
+                return False
+
+    def do_count(self, line):
+        """Counts number of instances of a given class"""
+        args = line.split(" ")
+        data = storage.all()
+        count = 0
+        if line:
+            if args[0] in class_list:
+                pass
+            else:
+                print("** class doesn't exist **")
+                return False
+        for obj in data.keys():
+            instance_type = obj.split(".")[0]
+            if args[0] and args[0] == instance_type:
+                count += 1
+        print(count)
 
     def do_quit(self, line):
         """quit the console"""
@@ -137,6 +207,32 @@ class HBNBCommand(cmd.Cmd):
     def help_quit(self):
         """ Quit command to exit the program """
         print("Quit command to exit the program")
+
+    def default(self, line):
+        """Retrieve all instances of a class by using: <class name>.all()
+        Retrieve the number of instances of a class: <class name>.count()
+        """
+        inputline = line.split(".")
+        if "(" in inputline[1] and ")" in inputline[1]:
+            args = inputline[1].strip("\"(\")").split("(\"")
+            inputline.pop()
+            my_list = inputline + args
+            parsed = []
+            for n in my_list:
+                value = n.split("\",")
+                for v in value:
+                    parsed.append(v)
+            if len(parsed) >= 2:
+                if parsed[1] == "all":
+                    self.do_all(parsed[0])
+                elif parsed[1] == "count":
+                    self.do_count(parsed[0])
+                elif parsed[1] == "show":
+                    self.do_show(parsed[0] + " " + parsed[2])
+            else:
+                return cmd.Cmd.default(self, line)
+        else:
+            return cmd.Cmd.default(self, line)
 
 
 if __name__ == '__main__':
