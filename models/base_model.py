@@ -1,6 +1,15 @@
 #!/usr/bin/python3
 """This module define BaseModel class which defines all
 common attrbute and methods for subclasses.
+
+Module Description:
+The BaseModel module defines the foundational class for all other
+classes in the project. It contains attributes and methods that are
+common to all classes, ensuring consistent behavior and data structure
+across instances. The class is responsible for generating unique IDs,
+managing creation and modification timestamps, providing a dictionary
+representation of instances, and facilitating serialization and
+deserialization through JSON.
 """
 from datetime import datetime
 from uuid import uuid4
@@ -41,7 +50,9 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """Returns BaseModel dictionary"""
+        """Returns BaseModel dictionary consisting all attributes
+        and their values.
+        """
         model_dict = {}
         model_dict["__class__"] = self.__class__.__name__
         for key, value in self.__dict__.items():

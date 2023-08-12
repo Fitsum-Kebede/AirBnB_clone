@@ -1,6 +1,15 @@
 #!/usr/bin/python3
 """This module define the FileStorage that serializes instances
 to a JSON file and deserializes JSON file to instances
+
+Module Description:
+The FileStorage module implements a storage mechanism for serializing
+instances into a JSON file and deserializing instances from the JSON
+file back into memory. This module acts as a bridge between the
+object-oriented realm and the persistent storage layer. It offers
+methods to store and retrieve instances, maintaining them across program
+launches. By converting instances to JSON strings and storing them in a file,
+the FileStorage module enables persistence and seamless data recovery.
 """
 import json
 from models.base_model import BaseModel
@@ -13,12 +22,24 @@ from models.review import Review
 
 
 class FileStorage:
-    """FileStorage class definition"""
-    __file_path = "airbnb.json"
+    """FileStorage class definition and provides instance
+    storage operations.
+
+    Private class attributes:
+        __file_path: string - path to the JSON file.
+        __objects: dictionary - empty but will store all
+                            objects by <class name>.id
+    Public instance methods:
+        all(self): returns the dictionary __objects
+        new(self, obj): sets in __objects the obj with key <obj class name>.id
+        save(self): serializes __objects to the JSON file (path: __file_path)
+        reload(self): deserializes the JSON file to __objects
+    """
+    __file_path = "fils.json"
     __objects = {}
 
     def all(self):
-        """Returns the dictionary __objects"""
+        """Returns the dictionary __objects to saved is json file"""
         return self.__objects
 
     def new(self, obj):

@@ -50,7 +50,7 @@ class Test_BaseModel(unittest.TestCase):
         self.assertEqual(instance_dict['id'], instance.id)
         self.assertEqual(instance_dict['name'], "Example")
 
-    def test_re_create_from_dict(self):
+    def test_re_create_from_dict_A(self):
         """Tests for the re-creation of an instance from the its
         dictionary representation
         <class 'BaseModel'>->to_dict()-><class 'dict'> -><class 'BaseModel'>
@@ -62,6 +62,21 @@ class Test_BaseModel(unittest.TestCase):
         self.assertIsInstance(new_instance, BaseModel)
         self.assertEqual(new_instance.id, instance.id)
         self.assertEqual(new_instance.name, "Example")
+        self.assertEqual(str(type(new_instance.created_at)),
+                         "<class 'datetime.datetime'>")
+        self.assertEqual(str(type(new_instance.updated_at)),
+                         "<class 'datetime.datetime'>")
+
+    def test_re_create_from_dict_B(self):
+        instance = BaseModel()
+        instance.name = "Modify me"
+        instance_dict = instance.to_dict()
+        del instance_dict["__class__"]
+        instance_dict["known_as"] = "new instance"
+        new_instance = BaseModel(**instance_dict)
+        new_instance_dict = new_instance.to_dict
+        self.assertIn('__class__', new_instance_dict)
+
 
 
 if __name__ == '__main__':
