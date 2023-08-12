@@ -74,7 +74,19 @@ class Test_BaseModel(unittest.TestCase):
         del instance_dict["__class__"]
         instance_dict["known_as"] = "new instance"
         new_instance = BaseModel(**instance_dict)
+        self.assertEqual(new_instance.created_at, instance.created_at)
+        self.assertEqual(new_instance.updated_at, instance.updated_at)
+        self.assertEqual(new_instance.id, instance.id)
+        self.assertEqual(new_instance.__class__, BaseModel)
+        self.assertIsNot(new_instance, instance)
 
+    def test_time_format(self):
+        instance = BaseModel()
+        datetime_format = instance.to_dict()["created_at"]
+        parsed_datetime = datetime.strptime(datetime_format,
+                                            "%Y-%m-%dT%H:%M:%S.%f")
+        formatted_datetime = parsed_datetime.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        self.assertEqual(datetime_format, formatted_datetime)
 
 
 if __name__ == '__main__':
