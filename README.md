@@ -8,7 +8,7 @@
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Setup and Usage](#setup-and-usage)
-* [The console](#The-console)
+- [The console](#The-console)
 
 # Introduction:
 Welcome to the Airbnb Clone Project! This application is designed to
