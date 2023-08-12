@@ -47,6 +47,7 @@ This README is a guide through the features, technologies used, setup instructio
 
 # The console
 The console is a command-line interpreter that allows users to manage and manipulate instances of various classes in an application. The primary purpose of this script is to provide a way to interact with and manipulate objects by executing specific commands. The script operates within a command loop, where users can enter commands to create, retrieve, update, and delete instances of different classes.
+![](utils/images/console.PNG)
 
 # Setup and Usage
 The command interpreter supports a variety of operations for managing objects within the application. It enables users to interact with the data model in a structured way. Below are the key operations that can be performed using this command interpreter:
