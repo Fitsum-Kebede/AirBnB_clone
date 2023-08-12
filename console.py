@@ -1,6 +1,17 @@
 #!/usr/bin/python3
-""" entry point for the command interpreter"""
+"""Entry point for the command interpreter and is used
+manage the objects of the application.
+
+operations that can be performed or be done with the command
+interpreter are as follows:
+- Create a new object (ex: a new User or a new Place)
+- Retrieve an object from a file, a database etc…
+- Do operations on objects (count, compute stats, etc…)
+- Update attributes of an object
+- Destroy an object
+"""
 import cmd
+import re
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -205,8 +216,14 @@ class HBNBCommand(cmd.Cmd):
         print("Quit command to exit the program")
 
     def default(self, line):
-        """Retrieve all instances of a class by using: <class name>.all()
-        Retrieve the number of instances of a class: <class name>.count()
+        """Retrieves all instances of a class by using: <class name>.all()
+        Retrieves the number of instances of a class: <class name>.count()
+        Retrieves an instance based on its ID: <class name>.show(<id>)
+        Destroys an instance based on his ID: <class name>.destroy(<id>)
+        Updates an instance based on his ID:
+            <class name>.update(<id>, <attribute name>, <attribute value>
+        Update an instance based on his ID with a dictionary:
+            <class name>.update(<id>, <dictionary representation>)
         """
         inputline = line.split(".")
         if "(" in inputline[1] and ")" in inputline[1]:
@@ -225,6 +242,31 @@ class HBNBCommand(cmd.Cmd):
                     self.do_count(parsed[0])
                 elif parsed[1] == "show":
                     self.do_show(parsed[0] + " " + parsed[2])
+                elif parsed[1] == "destroy":
+                    self.do_destroy(parsed[0] + " " + parsed[2])
+                elif parsed[1] == "update":
+                    statement = parsed[0] + " " + parsed[2]
+                    attr_value = []
+                    for pos in range(len(parsed)):
+                        if pos >= 3:
+                            if "{" in parsed[pos] or "}" in parsed[pos]:
+                                strip_off = [' ', '{', "'", '"', '}']
+                                new = ""
+                                for c in list(parsed[pos]):
+                                    if c not in strip_off:
+                                        new += c
+                                attr_value.append(new.split(":"))
+                            else:
+                                attr_value.append(parsed[pos].strip(" \""))
+                    if attr_value and type(attr_value[0]) == list:
+                        for item in attr_value:
+                            n = statement + " " + item[0] + " " + item[1]
+                            self.do_update(n)
+                    else:
+                        n = statement
+                        if attr_value:
+                            n += " " + attr_value[0] + " " + attr_value[1]
+                        self.do_update(n)
             else:
                 return cmd.Cmd.default(self, line)
         else:
