@@ -20,8 +20,7 @@ class BaseModel:
                     create another BaseModel object.
         """
         self.id = str(uuid4())
-        self.created_at = datetime.today()
-        self.updated_at = datetime.today()
+        self.created_at = self.updated_at = datetime.today()
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
