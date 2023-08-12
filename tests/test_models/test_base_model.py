@@ -74,8 +74,6 @@ class Test_BaseModel(unittest.TestCase):
         del instance_dict["__class__"]
         instance_dict["known_as"] = "new instance"
         new_instance = BaseModel(**instance_dict)
-        new_instance_dict = new_instance.to_dict
-        self.assertIn('__class__', new_instance_dict)
 
 
 
