@@ -102,6 +102,12 @@ class TestPlaceMethods(unittest.TestCase):
         """Test if amenity_ids attribute is of correct type."""
         self.assertEqual(list, type(Place.amenity_ids))
 
+    def test_unique_two_places(self):
+        """Test if two Place instances have unique ids."""
+        placea = Place()
+        placeb = Place()
+        self.assertNotEqual(placea.id, placeb.id)
+
     def test_repr_str(self):
         """Test if __str__ method returns the correct string representation."""
         current_time = datetime.today()
@@ -121,6 +127,12 @@ class TestPlaceMethods(unittest.TestCase):
         placeb = Place()
         self.assertLess(placea.created_at, placeb.created_at)
 
+    def test_dif_two_places_updated_at(self):
+        """Test if two Place instances have different updated_at timestamps."""
+        placea = Place()
+        sleep(0.05)
+        placeb = Place()
+        self.assertLess(placea.updated_at, placeb.updated_at)
 
     def test_night_attr_price(self):
         """Test if price_by_night attribute is of correct type."""
