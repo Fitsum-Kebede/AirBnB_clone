@@ -14,18 +14,18 @@ class TestAmenityMethods(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         try:
-            os.rename("fils.json", "tmp")
+            os.rename("file.json", "tmp")
         except IOError:
             pass
 
     @classmethod
     def tearDownClass(cls):
         try:
-            os.remove("fils.json")
+            os.remove("file.json")
         except IOError:
             pass
         try:
-            os.rename("tmp", "fils.json")
+            os.rename("tmp", "file.json")
         except IOError:
             pass
 
@@ -108,7 +108,7 @@ class TestAmenityMethods(unittest.TestCase):
     def test_save_file_upda(self):
         self.amenity.save()
         amid = "Amenity." + self.amenity.id
-        with open("fils.json", "r") as file:
+        with open("file.json", "r") as file:
             self.assertIn(amid, file.read())
 
     def test_type_dict(self):
