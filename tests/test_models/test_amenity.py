@@ -72,7 +72,6 @@ class TestAmenityMethods(unittest.TestCase):
         )
         self.assertEqual(str(self.amenity), expected_str)
 
-  
     def test_inst_kwargs(self):
         tym = datetime.today()
         tym_iso = tym.isoformat()
@@ -85,7 +84,6 @@ class TestAmenityMethods(unittest.TestCase):
         with self.assertRaises(TypeError):
             Amenity(id=None, created_at=None, updated_at=None)
 
-   
     def test_save(self):
         sleep(0.05)
         first_updated_at = self.amenity.updated_at
