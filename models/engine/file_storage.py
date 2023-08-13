@@ -35,7 +35,7 @@ class FileStorage:
         save(self): serializes __objects to the JSON file (path: __file_path)
         reload(self): deserializes the JSON file to __objects
     """
-    __file_path = "fils.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -77,8 +77,11 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as file:
                 data = json.load(file)
-                for key, value in data.items():
-                    name = key.split(".")
-                    self.__objects[key] = classes_dict[name[0]](**value)
+                if data:
+                    for key, value in data.items():
+                        name = key.split(".")
+                        self.__objects[key] = classes_dict[name[0]](**value)
+                else:
+                    self.__objects = {}
         except FileNotFoundError:
             pass

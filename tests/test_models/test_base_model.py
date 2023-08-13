@@ -1,11 +1,52 @@
-"""This module is the unittest for BaseModel class"""
+"""This module is the unittest for BaseModel class
+
+Test decription:
+The following are the some of the important operations to test
+BaseModel class:
+
+Test the id attribute generation:
+    Ensure that their id attributes are unique and in string format.
+Test the created_at and updated_at attributes:
+    Verify that created_at and updated_at attributes are set
+    to the current datetime.
+Test the __str__ method:
+    Checks if the formatted string output matches the expected format.
+Test the save method:
+    Check that the updated_at attribute is correctly updated
+    after calling save.
+Test the to_dict method:
+    Verify that the returned dictionary contains all instance attributes.
+    Check that the __class__ key in the dictionary matches the
+    class name of the object.
+    Confirm that the created_at and updated_at attributes are properly
+    converted to ISO format
+"""
 import unittest
+import os
 from datetime import datetime
+from models import storage
 from models.base_model import BaseModel
+from models import storage
 
 
 class Test_BaseModel(unittest.TestCase):
     """Test_BaseModel class  definition for testing BaseModel class"""
+    @classmethod
+    def setUpClass(cls):
+        cls.temp_file_path = "airbnb.json"
+        with open(cls.temp_file_path, "w") as file:
+            file.write('{}')
+        storage._FileStorage__file_path = cls.temp_file_path
+
+    @classmethod
+    def tearDownClass(cls):
+        all_objs = list(storage.all().keys())
+        for obj_id in all_objs:
+            del storage._FileStorage__objects[obj_id]
+            storage.save()
+        if os.path.exists(cls.temp_file_path):
+            os.remove(cls.temp_file_path)
+
     def test_id_generation(self):
         """Tests for the uniqueness of instance id and its type"""
         instance1 = BaseModel()
@@ -74,9 +115,19 @@ class Test_BaseModel(unittest.TestCase):
         del instance_dict["__class__"]
         instance_dict["known_as"] = "new instance"
         new_instance = BaseModel(**instance_dict)
-        new_instance_dict = new_instance.to_dict
-        self.assertIn('__class__', new_instance_dict)
+        self.assertEqual(new_instance.created_at, instance.created_at)
+        self.assertEqual(new_instance.updated_at, instance.updated_at)
+        self.assertEqual(new_instance.id, instance.id)
+        self.assertEqual(new_instance.__class__, BaseModel)
+        self.assertIsNot(new_instance, instance)
 
+    def test_time_format(self):
+        instance = BaseModel()
+        datetime_format = instance.to_dict()["created_at"]
+        parsed_datetime = datetime.strptime(datetime_format,
+                                            "%Y-%m-%dT%H:%M:%S.%f")
+        formatted_datetime = parsed_datetime.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        self.assertEqual(datetime_format, formatted_datetime)
 
 
 if __name__ == '__main__':
