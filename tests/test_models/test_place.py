@@ -10,7 +10,6 @@ from models.place import Place
 
 class TestPlaceMethods(unittest.TestCase):
     """Test cases for the Place class."""
-
     @classmethod
     def setUpClass(cls):
         try:
@@ -36,7 +35,8 @@ class TestPlaceMethods(unittest.TestCase):
         """Test instantiation with keyword arguments."""
         current_time = datetime.today()
         current_time_iso = current_time.isoformat()
-        place = Place(id="415", created_at=current_time_iso, updated_at=current_time_iso)
+        place = Place(id="415", created_at=current_time_iso,
+                      updated_at=current_time_iso)
         self.assertEqual(place.id, "415")
         self.assertEqual(place.created_at, current_time)
         self.assertEqual(place.updated_at, current_time)
@@ -69,7 +69,7 @@ class TestPlaceMethods(unittest.TestCase):
     def test_attr_max_guest(self):
         """Test if max_guest attribute is of correct type."""
         self.assertEqual(int, type(Place.max_guest))
- 
+
     def test_updated_at_dateti(self):
         """Test if updated_at attribute is of datetime type."""
         self.assertEqual(datetime, type(self.test_place.updated_at))
@@ -93,7 +93,7 @@ class TestPlaceMethods(unittest.TestCase):
     def test_attr_longitude(self):
         """Test if longitude attribute is of correct type."""
         self.assertEqual(float, type(Place.longitude))
-    
+
     def test_attr_name(self):
         """Test if name attribute is of correct type."""
         self.assertEqual(str, type(Place.name))
@@ -111,7 +111,7 @@ class TestPlaceMethods(unittest.TestCase):
     def test_unused_args(self):
         """Test if unused arguments are not added to the instance."""
         place = Place(None)
-        self.assertNotIn(None, place.__dict__.values())   
+        self.assertNotIn(None, place.__dict__.values())
 
     def test_rep_str(self):
         """Test if __str__ method returns the correct string representation."""
@@ -208,4 +208,3 @@ class TestPlaceMethods(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

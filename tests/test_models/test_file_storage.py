@@ -185,6 +185,9 @@ class Test_FileStorage(unittest.TestCase):
         self.assertIsInstance(storage._FileStorage__objects[instance_key],
                               BaseModel)
 
+    def test_storage_variable(self):
+        instance = BaseModel()
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -10,7 +10,6 @@ from models.review import Review
 
 class TestReviewMethods(unittest.TestCase):
     """Test cases for Review class."""
-
     @classmethod
     def setUpClass(cls):
         try:
@@ -37,7 +36,6 @@ class TestReviewMethods(unittest.TestCase):
             os.remove("file.json")
         except IOError:
             pass
-
 
     def test_insta_type(self):
         """Test if the instance is of the correct type."""
@@ -180,4 +178,3 @@ class TestReviewMethods(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
