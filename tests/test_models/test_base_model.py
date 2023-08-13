@@ -1,4 +1,26 @@
-"""This module is the unittest for BaseModel class"""
+"""This module is the unittest for BaseModel class
+
+Test decription:
+The following are the some of the important operations to test
+BaseModel class:
+
+Test the id attribute generation:
+    Ensure that their id attributes are unique and in string format.
+Test the created_at and updated_at attributes:
+    Verify that created_at and updated_at attributes are set
+    to the current datetime.
+Test the __str__ method:
+    Checks if the formatted string output matches the expected format.
+Test the save method:
+    Check that the updated_at attribute is correctly updated
+    after calling save.
+Test the to_dict method:
+    Verify that the returned dictionary contains all instance attributes.
+    Check that the __class__ key in the dictionary matches the
+    class name of the object.
+    Confirm that the created_at and updated_at attributes are properly
+    converted to ISO format
+"""
 import unittest
 from datetime import datetime
 from models.base_model import BaseModel
