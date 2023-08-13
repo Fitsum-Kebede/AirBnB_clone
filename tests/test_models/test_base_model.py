@@ -22,12 +22,31 @@ Test the to_dict method:
     converted to ISO format
 """
 import unittest
+import os
 from datetime import datetime
+from models import storage
 from models.base_model import BaseModel
+from models import storage
 
 
 class Test_BaseModel(unittest.TestCase):
     """Test_BaseModel class  definition for testing BaseModel class"""
+    @classmethod
+    def setUpClass(cls):
+        cls.temp_file_path = "airbnb.json"
+        with open(cls.temp_file_path, "w") as file:
+            file.write('{}')
+        storage._FileStorage__file_path = cls.temp_file_path
+
+    @classmethod
+    def tearDownClass(cls):
+        all_objs = list(storage.all().keys())
+        for obj_id in all_objs:
+            del storage._FileStorage__objects[obj_id]
+            storage.save()
+        if os.path.exists(cls.temp_file_path):
+            os.remove(cls.temp_file_path)
+
     def test_id_generation(self):
         """Tests for the uniqueness of instance id and its type"""
         instance1 = BaseModel()
