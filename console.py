@@ -28,7 +28,7 @@ class_list = {
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
     def do_create(self, line):
         """Creates a new instance of BaseModel,
