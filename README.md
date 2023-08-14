@@ -203,6 +203,43 @@ Prints all string representation of all instances based or not on the class name
 ["[Place] (6c94d8c2-07f4-4de5-905d-a3b988fe06e3) {'id': '6c94d8c2-07f4-4de5-905d-a3b988fe06e3', 'created_at': datetime.datetime(2023, 8, 14, 4, 34, 43, 521618), 'updated_at': datetime.datetime(2023, 8, 14, 4, 34, 43, 521690)}", "[Place] (6c4d23a5-7dae-4651-a7e4-0f619a05b819) {'id': '6c4d23a5-7dae-4651-a7e4-0f619a05b819', 'created_at': datetime.datetime(2023, 8, 14, 6, 4, 59, 837114), 'updated_at': datetime.datetime(2023, 8, 14, 6, 4, 59, 837154)}", "[Place] (1bef1e30-43e0-4e5d-a711-c85161050978) {'id': '1bef1e30-43e0-4e5d-a711-c85161050978', 'created_at': datetime.datetime(2023, 8, 14, 6, 5, 0, 607447), 'updated_at': datetime.datetime(2023, 8, 14, 6, 5, 0, 607491)}", "[Place] (a53ffcf9-fc15-4a6d-ba2e-5ba79d148ee3) {'id': 'a53ffcf9-fc15-4a6d-ba2e-5ba79d148ee3', 'created_at': datetime.datetime(2023, 8, 14, 6, 5, 1, 430221), 'updated_at': datetime.datetime(2023, 8, 14, 6, 5, 1, 430263)}"]
 (hbnb) 
 ```
+# update
+Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+- Usage: **update \<class name\> \<id\> \<attribute name\> "\<attribute value\>"**
+- Usage: **\<class name\>.update(\<id\>, \<dictionary representation\>)**.
+```
+(hbnb) User.all()
+["[User] (d007cb77-50ed-4ae0-bfbe-68d6246c65b3) {'id': 'd007cb77-50ed-4ae0-bfbe-68d6246c65b3', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79387), 'updated_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79439)}", "[User] (de05db82-07fc-47ce-953e-3be6a737d495) {'id': 'de05db82-07fc-47ce-953e-3be6a737d495', 'created_at': datetime.datetime(2023, 8, 14, 4, 59, 31, 750874), 'updated_at': datetime.datetime(2023, 8, 14, 4, 59, 31, 750912)}", "[User] (9cc32290-206a-48bc-911a-859e99e88144) {'id': '9cc32290-206a-48bc-911a-859e99e88144', 'created_at': datetime.datetime(2023, 8, 14, 6, 3, 41, 59256), 'updated_at': datetime.datetime(2023, 8, 14, 6, 3, 41, 59303)}", "[User] (eb2aa6c8-2a5b-4ab4-8867-74eb2537797c) {'id': 'eb2aa6c8-2a5b-4ab4-8867-74eb2537797c', 'created_at': datetime.datetime(2023, 8, 14, 6, 3, 46, 342921), 'updated_at': datetime.datetime(2023, 8, 14, 6, 3, 46, 342971)}"]
+(hbnb) update User d007cb77-50ed-4ae0-bfbe-68d6246c65b3 email "example_email@airbnb_clone.com"
+(hbnb)
+(hbnb) User.show("d007cb77-50ed-4ae0-bfbe-68d6246c65b3")
+[User] (d007cb77-50ed-4ae0-bfbe-68d6246c65b3) {'id': 'd007cb77-50ed-4ae0-bfbe-68d6246c65b3', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79387), 'updated_at': datetime.datetime(2023, 8, 14, 7, 58, 55, 292470), 'email': 'example_email@airbnb_clone.com'}
+(hbnb) 
+(hbnb) User.update("d007cb77-50ed-4ae0-bfbe-68d6246c65b3", {"first_name": "console", "last_name": "airbnb_clone", "password": "project"})
+(hbnb) 
+(hbnb) User.show("d007cb77-50ed-4ae0-bfbe-68d6246c65b3")
+[User] (d007cb77-50ed-4ae0-bfbe-68d6246c65b3) {'id': 'd007cb77-50ed-4ae0-bfbe-68d6246c65b3', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79387), 'updated_at': datetime.datetime(2023, 8, 14, 8, 3, 35, 908182), 'email': 'example_email@airbnb_clone.com', 'first_name': 'console', 'last_name': 'airbnb_clone', 'password': 'project'}
+(hbnb) 
+```
+# count
+Retrieve the number of instances of a class: <class name>.count()
+```
+(hbnb) User.count()
+4
+(hbnb) User.all()
+["[User] (d007cb77-50ed-4ae0-bfbe-68d6246c65b3) {'id': 'd007cb77-50ed-4ae0-bfbe-68d6246c65b3', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79387), 'updated_at': datetime.datetime(2023, 8, 14, 8, 3, 35, 908182), 'email': 'example_email@airbnb_clone.com', 'first_name': 'console', 'l': 'a', 'password': 'project'}", "[User] (de05db82-07fc-47ce-953e-3be6a737d495) {'id': 'de05db82-07fc-47ce-953e-3be6a737d495', 'created_at': datetime.datetime(2023, 8, 14, 4, 59, 31, 750874), 'updated_at': datetime.datetime(2023, 8, 14, 4, 59, 31, 750912)}", "[User] (9cc32290-206a-48bc-911a-859e99e88144) {'id': '9cc32290-206a-48bc-911a-859e99e88144', 'created_at': datetime.datetime(2023, 8, 14, 6, 3, 41, 59256), 'updated_at': datetime.datetime(2023, 8, 14, 6, 3, 41, 59303)}", "[User] (eb2aa6c8-2a5b-4ab4-8867-74eb2537797c) {'id': 'eb2aa6c8-2a5b-4ab4-8867-74eb2537797c', 'created_at': datetime.datetime(2023, 8, 14, 6, 3, 46, 342921), 'updated_at': datetime.datetime(2023, 8, 14, 6, 3, 46, 342971)}"]
+(hbnb) BaseModel.count()
+3
+(hbnb) BaseModel.all()
+["[BaseModel] (b65f6cd1-b671-4367-be06-43a02c3bc858) {'id': 'b65f6cd1-b671-4367-be06-43a02c3bc858', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 39, 418067), 'updated_at': datetime.datetime(2023, 8, 14, 4, 33, 39, 418116)}", "[BaseModel] (0303920a-ea12-4c01-918f-1b2bdab6134a) {'id': '0303920a-ea12-4c01-918f-1b2bdab6134a', 'created_at': datetime.datetime(2023, 8, 14, 6, 3, 31, 868782), 'updated_at': datetime.datetime(2023, 8, 14, 6, 3, 31, 868832)}", "[BaseModel] (334c327a-98de-4e29-b1fc-6525d8c810b5) {'id': '334c327a-98de-4e29-b1fc-6525d8c810b5', 'created_at': datetime.datetime(2023, 8, 14, 6, 3, 47, 901362), 'updated_at': datetime.datetime(2023, 8, 14, 6, 3, 47, 901414)}"]
+(hbnb) 
+(hbnb) Amenity.count()
+4
+(hbnb) Amenity.all()
+["[Amenity] (a63bc346-24fe-4cde-99ca-a608eb862811) {'id': 'a63bc346-24fe-4cde-99ca-a608eb862811', 'created_at': datetime.datetime(2023, 8, 14, 4, 34, 30, 918674), 'updated_at': datetime.datetime(2023, 8, 14, 4, 34, 30, 918730)}", "[Amenity] (c8ff1d26-37a7-4838-b46e-e1b0f175c65f) {'id': 'c8ff1d26-37a7-4838-b46e-e1b0f175c65f', 'created_at': datetime.datetime(2023, 8, 14, 6, 4, 35, 631521), 'updated_at': datetime.datetime(2023, 8, 14, 6, 4, 35, 631562)}", "[Amenity] (5fb81955-c1fe-45c0-823b-5c69bb97fe69) {'id': '5fb81955-c1fe-45c0-823b-5c69bb97fe69', 'created_at': datetime.datetime(2023, 8, 14, 6, 4, 37, 556652), 'updated_at': datetime.datetime(2023, 8, 14, 6, 4, 37, 556699)}", "[Amenity] (16b37058-de0c-439a-b15c-06021f2ff43b) {'id': '16b37058-de0c-439a-b15c-06021f2ff43b', 'created_at': datetime.datetime(2023, 8, 14, 6, 4, 38, 282016), 'updated_at': datetime.datetime(2023, 8, 14, 6, 4, 38, 282075)}"]
+(hbnb) 
+```
+
 # contributors
 - **Mcnores-Samuel** <samuelmcnores1@gmail.com>
 - **fitsum-kebede** <fitsuminfome@gmail.com>
