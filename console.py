@@ -225,7 +225,7 @@ class HBNBCommand(cmd.Cmd):
             <class name>.update(<id>, <dictionary representation>)
         """
         inputline = line.split(".")
-        if "(" in inputline[1] and ")" in inputline[1]:
+        if inputline and "(" in inputline[1] and ")" in inputline[1]:
             args = inputline[1].strip("\"(\")").split("(\"")
             inputline.pop()
             my_list = inputline + args
