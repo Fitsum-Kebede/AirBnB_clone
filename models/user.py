@@ -26,7 +26,7 @@ class User(BaseModel):
         Similar to first_name, it initializes as an empty string
         and holds the user's surname.
     """
-    email = None
-    password = None
-    first_name = None
-    last_name = None
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
