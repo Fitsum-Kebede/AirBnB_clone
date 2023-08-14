@@ -61,9 +61,33 @@ The command interpreter supports a variety of operations for managing objects wi
 * Count: Count the number of instances of a specific class.
 * Quit/Exit: Terminate the command interpreter.
 
+## Setup
 
+Setting up an Airbnb console involves preparing the environment, importing necessary modules,
+and then interacting with the classes and methods you've implemented in your project. Here's a step-by-step
+guide along with clear examples:
 
-![](utils/images/console.PNG)
+Open a terminal on your system and clone the repo.
+```
+$ git clone https://github.com/Fitsum-Kebede/AirBnB_clone.git
+```
+Use the cd command to navigate to the root directory of your Airbnb project.
+```
+$ cd AirBnB_clone
+```
+## Usage
+
+Run the console to manage instances
+```
+$ ./console.py
+(hbnb)help
+
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb)
+```
 
 # contributors
 - **Mcnores-Samuel** <samuelmcnores1@gmail.com>
