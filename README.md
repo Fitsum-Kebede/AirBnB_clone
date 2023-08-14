@@ -103,6 +103,7 @@ The following are classes and operation that be performed on the classes using t
 - destroy
 - all
 - update
+- count
 
 # create
 Creates a new instance of a class, saves it (to the JSON file) and prints the id
@@ -127,7 +128,7 @@ a63bc346-24fe-4cde-99ca-a608eb862811
 ```
 # show
 Prints the string representation of an instance based on the class name and id.
-- It can either be used as show **\<class name\> \<id\>** or **\<class name\>.show(\<id\>)**.
+- It can either be used as **show \<class name\> \<id\>** or **\<class name\>.show(\<id\>)**.
 - example:
 ```
 (hbnb) show BaseModel b65f6cd1-b671-4367-be06-43a02c3bc858
@@ -139,6 +140,41 @@ Prints the string representation of an instance based on the class name and id.
 (hbnb) User.show("d007cb77-50ed-4ae0-bfbe-68d6246c65b3")
 [User] (d007cb77-50ed-4ae0-bfbe-68d6246c65b3) {'id': 'd007cb77-50ed-4ae0-bfbe-68d6246c65b3', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79387), 'updated_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79439)}
 (hbnb)
+```
+# destroy
+Deletes an instance based on the class name and id (save the change into the JSON file).
+- It can either be used as **destroy \<class name\> \<id\>** or **\<class name\>.destroy(\<id\>)**.
+- example:
+```
+(hbnb) create User
+ddf5d0ec-9100-45d8-abba-fb6b126f376f
+(hbnb) create User
+6e202fc2-4f80-4425-ae03-684726dda42f
+(hbnb) create User
+0eb1d258-b314-490e-aee3-a0f935e98814
+(hbnb) create User
+4b05a6ba-8670-40cf-9dfd-036a3257b2a6
+(hbnb) create User
+de05db82-07fc-47ce-953e-3be6a737d495
+(hbnb) User.count()
+6
+(hbnb) destroy User ddf5d0ec-9100-45d8-abba-fb6b126f376f
+(hbnb) User.count()
+5
+(hbnb) destroy User ddf5d0ec-9100-45d8-abba-fb6b126f376f
+** no instance found **
+(hbnb) destroy User 6e202fc2-4f80-4425-ae03-684726dda42f
+(hbnb) destroy User 6e202fc2-4f80-4425-ae03-684726dda42f
+** no instance found **
+(hbnb) User.count()
+4
+(hbnb) User.destroy("0eb1d258-b314-490e-aee3-a0f935e98814")
+(hbnb) User.destroy("0eb1d258-b314-490e-aee3-a0f935e98814")
+** no instance found **
+(hbnb) User.destroy("4b05a6ba-8670-40cf-9dfd-036a3257b2a6")
+(hbnb) User.destroy("4b05a6ba-8670-40cf-9dfd-036a3257b2a6")
+** no instance found **
+(hbnb) 
 ```
 
 # contributors
