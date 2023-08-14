@@ -88,6 +88,43 @@ EOF  all  count  create  destroy  help  quit  show  update
 
 (hbnb)
 ```
+The following are classes and operation that be performed on the classes using the console.
+### classes
+- BaseModel
+- User
+- State
+- City
+- Amenity
+- Place
+- Review
+### console commands
+- create
+- show
+- destroy
+- all
+- update
+
+# create
+Creates a new instance of a class, saves it (to the JSON file) and prints the id
+```
+(hbnb)create BaseModel
+b65f6cd1-b671-4367-be06-43a02c3bc858
+(hbnb)create User
+d007cb77-50ed-4ae0-bfbe-68d6246c65b3
+(hbnb)create State
+1d8f655d-4aef-44f7-ab55-d4bd59918708
+(hbnb)create City
+dd02d053-3500-4156-b4eb-b7223cc40ec3
+(hbnb)create Amenity
+a63bc346-24fe-4cde-99ca-a608eb862811
+(hbnb)create Place
+6c94d8c2-07f4-4de5-905d-a3b988fe06e3
+(hbnb)create Review
+3eec0a79-415e-47bf-906d-e1a8594daae8
+(hbnb)all
+["[BaseModel] (b65f6cd1-b671-4367-be06-43a02c3bc858) {'id': 'b65f6cd1-b671-4367-be06-43a02c3bc858', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 39, 418067), 'updated_at': datetime.datetime(2023, 8, 14, 4, 33, 39, 418116)}", "[User] (d007cb77-50ed-4ae0-bfbe-68d6246c65b3) {'id': 'd007cb77-50ed-4ae0-bfbe-68d6246c65b3', 'created_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79387), 'updated_at': datetime.datetime(2023, 8, 14, 4, 33, 50, 79439)}", "[State] (1d8f655d-4aef-44f7-ab55-d4bd59918708) {'id': '1d8f655d-4aef-44f7-ab55-d4bd59918708', 'created_at': datetime.datetime(2023, 8, 14, 4, 34, 9, 219814), 'updated_at': datetime.datetime(2023, 8, 14, 4, 34, 9, 219875)}", "[City] (dd02d053-3500-4156-b4eb-b7223cc40ec3) {'id': 'dd02d053-3500-4156-b4eb-b7223cc40ec3', 'created_at': datetime.datetime(2023, 8, 14, 4, 34, 19, 255961), 'updated_at': datetime.datetime(2023, 8, 14, 4, 34, 19, 256009)}", "[Amenity] (a63bc346-24fe-4cde-99ca-a608eb862811) {'id': 'a63bc346-24fe-4cde-99ca-a608eb862811', 'created_at': datetime.datetime(2023, 8, 14, 4, 34, 30, 918674), 'updated_at': datetime.datetime(2023, 8, 14, 4, 34, 30, 918730)}", "[Place] (6c94d8c2-07f4-4de5-905d-a3b988fe06e3) {'id': '6c94d8c2-07f4-4de5-905d-a3b988fe06e3', 'created_at': datetime.datetime(2023, 8, 14, 4, 34, 43, 521618), 'updated_at': datetime.datetime(2023, 8, 14, 4, 34, 43, 521690)}", "[Review] (3eec0a79-415e-47bf-906d-e1a8594daae8) {'id': '3eec0a79-415e-47bf-906d-e1a8594daae8', 'created_at': datetime.datetime(2023, 8, 14, 4, 34, 50, 933325), 'updated_at': datetime.datetime(2023, 8, 14, 4, 34, 50, 933378)}"]
+(hbnb)
+```
 
 # contributors
 - **Mcnores-Samuel** <samuelmcnores1@gmail.com>
