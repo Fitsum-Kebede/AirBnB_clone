@@ -127,7 +127,7 @@ a63bc346-24fe-4cde-99ca-a608eb862811
 ```
 # show
 Prints the string representation of an instance based on the class name and id.
-It can either be used as show \<class name\> \<id\> or class name.show(\<id\>).
+- It can either be used as show **\<class name\> \<id\>** or **\<class name\>.show(\<id\>)**.
 
 
 # contributors
